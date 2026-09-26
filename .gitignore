@@ -1,0 +1,38 @@
+# Dependencias
+node_modules/
+.pnp
+.pnp.js
+
+# Build de Next.js
+.next/
+out/
+build/
+dist/
+
+# Variables de entorno  -> NUNCA subir credenciales
+.env
+.env.local
+.env.development
+.env.development.local
+.env.production
+.env.production.local
+.env.test
+.env.test.local
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+logs/
+*.log
+
+# Sistema operativo / editores
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Certificados / llaves
+*.pem
+*.key
+*.crt

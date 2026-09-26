@@ -1,4 +1,4 @@
-const { loadEnv } = require('./load-env');
+const { loadEnv } = require('./scripts/load-env');
 
 /**
  * Servidor unico para Next.js + Socket.IO (despliegue en Render).
@@ -96,9 +96,11 @@ app.prepare().then(() => {
     if (sweeping) return;
     sweeping = true;
     try {
-      // Firebase: se inicializa de forma lazy, solo cuando hace falta leer.
-      const { getContainer } = require('./src/infrastructure/container');
-      const closed = await getContainer().vehicleRepository.closeExpiredAuctions();
+      // `src/infrastructure/container.js` es ESM y usa el alias `@/`, que Node
+      // no puede resolver al ejecutar este archivo. Por eso el barrido usa el
+      // modulo CommonJS de `scripts/`, que solo depende de adaptadores planos.
+      const { closeExpiredAuctions } = require('./scripts/sweep-expired-auctions');
+      const closed = await closeExpiredAuctions();
       if (closed > 0) {
         console.log(`[server] ${closed} subasta(s) cerrada(s) por vencimiento.`);
       }

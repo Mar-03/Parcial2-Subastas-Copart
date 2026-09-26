@@ -14,7 +14,7 @@ import { formatDateTime, formatMoney } from '@/lib/format';
 import { joinAuction, leaveAuction, onBidUpdated } from '@/lib/socket-client';
 
 const SPECS = [
-  { key: 'year', label: 'Anio' },
+  { key: 'year', label: 'año' },
   { key: 'itemType', label: 'Tipo de articulo' },
   { key: 'brand', label: 'Marca' },
   { key: 'model', label: 'Modelo' },
@@ -158,7 +158,7 @@ export default function AuctionDetail({ vehicleId }) {
       <div className="container section">
         <div className="card card-pad empty-state">
           <h3>No pudimos mostrar esta subasta</h3>
-          <p>{error || 'El vehiculo solicitado no existe.'}</p>
+          <p>{error || 'El Vehículo solicitado no existe.'}</p>
           <Link href="/inventario" className="btn btn-primary">
             Volver al inventario
           </Link>
@@ -210,7 +210,7 @@ export default function AuctionDetail({ vehicleId }) {
               </div>
             ))}
             <div className="spec-item">
-              <span>Nivel de dano</span>
+              <span>Nivel de daño</span>
               <strong>{vehicle.damageLevel}</strong>
             </div>
             <div className="spec-item">

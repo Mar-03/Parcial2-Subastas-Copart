@@ -1,10 +1,10 @@
 import { getDamageLevel } from '@/domain/entities/damage-level';
 
 /**
- * Badge visual del nivel de dano.
- *   VERDE   -> dano menor / limpio
- *   AMARILLO -> dano medio / reparable
- *   ROJO    -> dano severo / salvamento
+ * Badge visual del nivel de daño.
+ *   VERDE   -> daño menor / limpio
+ *   AMARILLO -> daño medio / reparable
+ *   ROJO    -> daño severo / salvamento
  */
 export default function DamageBadge({ level, short = false, className = '' }) {
   const info = getDamageLevel(level);

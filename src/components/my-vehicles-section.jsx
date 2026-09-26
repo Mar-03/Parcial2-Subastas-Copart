@@ -11,7 +11,7 @@ import { formatDateTime, formatMoney } from '@/lib/format';
 import { handleImageError, safeImageSrc } from '@/lib/image';
 
 /**
- * Tabla con los vehiculos publicados por el usuario autenticado
+ * Tabla con los vehículos publicados por el usuario autenticado
  * (GET /api/my-vehicles). Muestra estado, oferta actual y fecha de cierre.
  */
 export default function MyVehiclesSection() {
@@ -45,12 +45,12 @@ export default function MyVehiclesSection() {
         <div>
           <h2>Mis publicaciones</h2>
           <p>
-            Vehiculos publicados por {user?.fullName || 'tu cuenta'}. Solo tu puedes ver esta lista y
+            vehículos publicados por {user?.fullName || 'tu cuenta'}. Solo tu puedes ver esta lista y
             administrar tus unidades.
           </p>
         </div>
         <Link href="/publicar" className="btn btn-primary">
-          Publicar otro vehiculo
+          Publicar otro Vehículo
         </Link>
       </div>
 
@@ -62,13 +62,13 @@ export default function MyVehiclesSection() {
         </div>
       ) : vehicles.length === 0 ? (
         <div className="card card-pad empty-state">
-          <h3>Todavia no has publicado ningun vehiculo</h3>
+          <h3>Todavia no has publicado ningun Vehículo</h3>
           <p>
-            Publica tu primer vehiculo en subasta para recibir ofertas en tiempo real de los
+            Publica tu primer Vehículo en subasta para recibir ofertas en tiempo real de los
             participantes registrados.
           </p>
           <Link href="/publicar" className="btn btn-primary">
-            Publicar vehiculo
+            Publicar Vehículo
           </Link>
         </div>
       ) : (
@@ -77,8 +77,8 @@ export default function MyVehiclesSection() {
             <thead>
               <tr>
                 <th>Foto</th>
-                <th>Vehiculo</th>
-                <th>Dano</th>
+                <th>Vehículo</th>
+                <th>daño</th>
                 <th>Monto base</th>
                 <th>Oferta actual</th>
                 <th>Estado</th>
@@ -127,7 +127,7 @@ export default function MyVehiclesSection() {
                   </td>
                   <td>{formatDateTime(vehicle.endTime)}</td>
                   <td>
-                    <Link href={`/vehiculos/${vehicle.id}`} className="btn btn-secondary btn-sm">
+                    <Link href={`/vehículos/${vehicle.id}`} className="btn btn-secondary btn-sm">
                       Ver subasta
                     </Link>
                   </td>

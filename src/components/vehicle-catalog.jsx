@@ -29,7 +29,7 @@ const EMPTY_FILTERS = {
 };
 
 /**
- * Catalogo de vehiculos con filtros combinables aplicados SIN recargar la pagina.
+ * Catalogo de vehículos con filtros combinables aplicados SIN recargar la pagina.
  * Los datos se piden a GET /api/vehicles en cada cambio de filtro.
  */
 export default function VehicleCatalog({ showFilters = true, heading, subheading }) {
@@ -95,12 +95,12 @@ export default function VehicleCatalog({ showFilters = true, heading, subheading
 
   const activeChips = useMemo(() => {
     const chips = [];
-    if (filters.year) chips.push({ key: 'year', label: `Anio: ${filters.year}` });
+    if (filters.year) chips.push({ key: 'year', label: `año: ${filters.year}` });
     if (filters.brand) chips.push({ key: 'brand', label: `Marca: ${filters.brand}` });
     if (filters.model) chips.push({ key: 'model', label: `Modelo: ${filters.model}` });
     if (filters.fuel) chips.push({ key: 'fuel', label: `Combustible: ${filters.fuel}` });
     if (filters.damageLevel) {
-      chips.push({ key: 'damageLevel', label: `Dano: ${filters.damageLevel}` });
+      chips.push({ key: 'damageLevel', label: `daño: ${filters.damageLevel}` });
     }
     if (filters.search) chips.push({ key: 'search', label: `Busqueda: ${filters.search}` });
     return chips;
@@ -150,7 +150,7 @@ export default function VehicleCatalog({ showFilters = true, heading, subheading
           <div>
             <div className="catalog-toolbar">
               <span className="catalog-count">
-                {loading ? 'Cargando inventario...' : `${data.total} vehiculo(s) encontrado(s)`}
+                {loading ? 'Cargando inventario...' : `${data.total} Vehículo(s) encontrado(s)`}
               </span>
               <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap', alignItems: 'center' }}>
                 <input
@@ -187,7 +187,7 @@ export default function VehicleCatalog({ showFilters = true, heading, subheading
               </div>
             ) : data.vehicles.length === 0 ? (
               <div className="card card-pad empty-state">
-                <h3>No hay vehiculos que coincidan con los filtros</h3>
+                <h3>No hay vehículos que coincidan con los filtros</h3>
                 <p>
                   Ajusta los criterios de busqueda o quita algun filtro para ver mas resultados del
                   inventario disponible.
@@ -198,7 +198,7 @@ export default function VehicleCatalog({ showFilters = true, heading, subheading
                   </button>
                   {isAuthenticated ? (
                     <Link href="/publicar" className="btn btn-primary">
-                      Publicar vehiculo
+                      Publicar Vehículo
                     </Link>
                   ) : null}
                 </div>

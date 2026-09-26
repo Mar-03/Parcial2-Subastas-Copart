@@ -5,7 +5,7 @@ import { formatDateTime, formatMoney } from '@/lib/format';
 import { handleImageError, safeImageSrc } from '@/lib/image';
 
 /**
- * Tarjeta de vehiculo del catalogo: imagen, anio, marca, modelo, nivel de dano,
+ * Tarjeta de Vehículo del catalogo: imagen, año, marca, modelo, nivel de daño,
  * monto base, oferta actual, fecha de cierre y boton "Ver subasta".
  */
 export default function VehicleCard({ vehicle }) {
@@ -55,7 +55,7 @@ export default function VehicleCard({ vehicle }) {
           <span className="vehicle-card-closing">
             Cierre: {formatDateTime(vehicle.endTime)}
           </span>
-          <Link href={`/vehiculos/${vehicle.id}`} className="btn btn-primary btn-sm">
+          <Link href={`/vehículos/${vehicle.id}`} className="btn btn-primary btn-sm">
             Ver subasta
           </Link>
         </div>

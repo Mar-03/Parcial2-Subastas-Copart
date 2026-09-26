@@ -11,9 +11,9 @@ export default function HomePage() {
       <section className="hero">
         <div className="container">
           <div className="hero-content">
-            <h1>Subastas de vehiculos en tiempo real</h1>
+            <h1>Subastas de vehículos en tiempo real</h1>
             <p>
-              Compra vehiculos en subasta con ofertas en vivo. Publica tu unidad, recibe propuestas al
+              Compra vehículos en subasta con ofertas en vivo. Publica tu unidad, recibe propuestas al
               instante y gana cuando el tiempo se agota.
             </p>
             <div className="hero-actions">
@@ -21,7 +21,7 @@ export default function HomePage() {
                 Ver inventario
               </Link>
               <Link href="/publicar" className="btn btn-primary btn-lg">
-                Publicar vehiculo
+                Publicar Vehículo
               </Link>
             </div>
 
@@ -36,7 +36,7 @@ export default function HomePage() {
               </div>
               <div className="hero-stat">
                 <strong>5+ fotos</strong>
-                <span>Galeria por vehiculo</span>
+                <span>Galeria por Vehículo</span>
               </div>
               <div className="hero-stat">
                 <strong>Q 25,000.00</strong>
@@ -50,7 +50,7 @@ export default function HomePage() {
       <VehicleCatalog
         showFilters
         heading="Inventario de subastas"
-        subheading="Filtra por anio, marca, modelo, combustible y nivel de dano. Los filtros se combinan entre si."
+        subheading="Filtra por año, marca, modelo, combustible y nivel de daño. Los filtros se combinan entre si."
       />
     </>
   );

@@ -68,9 +68,11 @@ const SAMPLE_IMAGES = [
   'https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=1200&q=70',
   'https://images.unsplash.com/photo-1494976388531-d1058494cdd8?auto=format&fit=crop&w=1200&q=70',
   'https://images.unsplash.com/photo-1553440569-bcc63803a83d?auto=format&fit=crop&w=1200&q=70',
+  'https://images.unsplash.com/photo-1541899481282-d53bffe3c35d?auto=format&fit=crop&w=1200&q=70',
   'https://images.unsplash.com/photo-1583121274602-3e2820c69888?auto=format&fit=crop&w=1200&q=70',
   'https://images.unsplash.com/photo-1552519507-da3b142c6e3d?auto=format&fit=crop&w=1200&q=70',
   'https://images.unsplash.com/photo-1568605117036-5fe5e7bab0b7?auto=format&fit=crop&w=1200&q=70',
+  'https://images.unsplash.com/photo-1502877338535-766e1452684a?auto=format&fit=crop&w=1200&q=70',
 ];
 
 /** Calcula fecha/hora local en formato datetime-local dentro de N horas. */
@@ -122,10 +124,10 @@ function buildInitialState(vehicle) {
 }
 
 /**
- * Formulario completo de publicacion / edicion de un Vehículo.
+ * Formulario completo de publicacion / edicion de un vehiculo.
  * La validacion definitiva la hace el backend (POST / PUT /api/vehicles).
  */
-export default function VehicleForm({ initialVehicle = null, onSubmit, submitLabel = 'Publicar Vehículo' }) {
+export default function VehicleForm({ initialVehicle = null, onSubmit, submitLabel = 'Publicar vehiculo' }) {
   const [form, setForm] = useState(() => buildInitialState(initialVehicle));
   const [errors, setErrors] = useState({});
   const [serverError, setServerError] = useState(null);
@@ -197,7 +199,7 @@ export default function VehicleForm({ initialVehicle = null, onSubmit, submitLab
     // Regla de la rubrica: minimo 5 imagenes antes de permitir publicar.
     if (allImages.length < MIN_IMAGES) {
       setErrors({
-        images: `Debes seleccionar al menos ${MIN_IMAGES} imagenes del Vehículo.`,
+        images: `Debes seleccionar al menos ${MIN_IMAGES} imagenes del vehiculo.`,
       });
       setServerError(
         `Necesitas al menos ${MIN_IMAGES} imagenes. Has agregado ${allImages.length}.`,
@@ -228,7 +230,7 @@ export default function VehicleForm({ initialVehicle = null, onSubmit, submitLab
       if (err.errors && typeof err.errors === 'object') {
         setErrors(err.errors);
       }
-      setServerError(err.message || 'No se pudo guardar el Vehículo.');
+      setServerError(err.message || 'No se pudo guardar el vehiculo.');
     } finally {
       setSubmitting(false);
     }
@@ -247,7 +249,7 @@ export default function VehicleForm({ initialVehicle = null, onSubmit, submitLab
 
         <div className="form-group">
           <label className="form-label" htmlFor="year">
-            año <span className="required">*</span>
+            Anio <span className="required">*</span>
           </label>
           <input
             id="year"
@@ -386,7 +388,7 @@ export default function VehicleForm({ initialVehicle = null, onSubmit, submitLab
 
         <div className="form-group full">
           <label className="form-label">
-            Nivel de daño <span className="required">*</span>
+            Nivel de dano <span className="required">*</span>
           </label>
           <div style={{ display: 'flex', gap: 10, flexWrap: 'wrap' }}>
             {Object.values(DAMAGE_LEVELS).map((level) => (
@@ -584,7 +586,7 @@ export default function VehicleForm({ initialVehicle = null, onSubmit, submitLab
             rows={5}
             value={form.imagesText}
             onChange={set('imagesText')}
-            placeholder={'https://mi-sitio.com/Vehículo/1.jpg\nhttps://mi-sitio.com/Vehículo/2.jpg'}
+            placeholder={'https://mi-sitio.com/vehiculo/1.jpg\nhttps://mi-sitio.com/vehiculo/2.jpg'}
           />
           <div
             style={{

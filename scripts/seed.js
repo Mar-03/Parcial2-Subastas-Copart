@@ -3,11 +3,11 @@
  *
  * Carga datos de demostracion en Firebase Realtime Database:
  *   - 3 usuarios demo (contrasenas con bcrypt, 10 rounds)
- *   - 8 vehículos (6 subastas activas + 2 subastas cerradas)
- *   - galeria de 6 imagenes por Vehículo (URLs)
+ *   - 8 vehiculos (6 subastas activas + 2 subastas cerradas)
+ *   - galeria de 6 imagenes por vehiculo (URLs)
  *   - ofertas de ejemplo que respetan la regla del +10%
  *
- * Es IDEMPOTENTE: si se ejecuta varias veces no duplica usuarios ni vehículos.
+ * Es IDEMPOTENTE: si se ejecuta varias veces no duplica usuarios ni vehiculos.
  * Nunca borra datos existentes.
  *
  *   npm run db:seed
@@ -40,16 +40,18 @@ const GALLERY = [
   'https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=1200&q=70',
   'https://images.unsplash.com/photo-1494976388531-d1058494cdd8?auto=format&fit=crop&w=1200&q=70',
   'https://images.unsplash.com/photo-1553440569-bcc63803a83d?auto=format&fit=crop&w=1200&q=70',
+  'https://images.unsplash.com/photo-1541899481282-d53bffe3c35d?auto=format&fit=crop&w=1200&q=70',
   'https://images.unsplash.com/photo-1583121274602-3e2820c69888?auto=format&fit=crop&w=1200&q=70',
   'https://images.unsplash.com/photo-1552519507-da3b142c6e3d?auto=format&fit=crop&w=1200&q=70',
   'https://images.unsplash.com/photo-1568605117036-5fe5e7bab0b7?auto=format&fit=crop&w=1200&q=70',
+  'https://images.unsplash.com/photo-1502877338535-766e1452684a?auto=format&fit=crop&w=1200&q=70',
 ];
 
 const galleryFor = (offset = 0) =>
   Array.from({ length: 6 }, (_, index) => GALLERY[(offset + index) % GALLERY.length]);
 
 /**
- * 6 subastas ACTIVAS (distintos años, marcas, combustibles y daños)
+ * 6 subastas ACTIVAS (distintos anios, marcas, combustibles y danos)
  * + 2 subastas YA CERRADAS para demostrar los estados finales.
  */
 const DEMO_VEHICLES = [
@@ -292,7 +294,7 @@ async function seedVehicles(userIds) {
   for (const vehicle of DEMO_VEHICLES) {
     const ownerId = Number(userIds[vehicle.ownerEmail]);
 
-    // Clave de idempotencia: propietario + marca + modelo + año.
+    // Clave de idempotencia: propietario + marca + modelo + anio.
     const duplicate = existingList.find(
       (item) =>
         item &&
@@ -306,7 +308,7 @@ async function seedVehicles(userIds) {
       skipped += 1;
       console.log(`  [EXISTE] ${vehicle.brand} ${vehicle.model} ${vehicle.year} (id ${duplicate.id})`);
 
-      // Asegura la galeria minima (5 imagenes) aunque el Vehículo ya exista.
+      // Asegura la galeria minima (5 imagenes) aunque el vehiculo ya exista.
       const gallery = duplicate.images && typeof duplicate.images === 'object' ? duplicate.images : {};
       if (Object.keys(gallery).length < 5) {
         await writeGallery(duplicate.id, galleryFor(vehicle.galleryOffset));
@@ -460,16 +462,16 @@ async function main() {
     console.log('Usuarios demo:');
     const userIds = await seedUsers();
 
-    console.log('\nvehículos demo:');
+    console.log('\nVehiculos demo:');
     const result = await seedVehicles(userIds);
 
     const totals = await printTotals();
     await markSeedRun(totals);
 
     console.log('\n---------------------------------------------------------');
-    console.log(`Seed completado: ${result.created} Vehículo(s) nuevos, ${result.skipped} ya existian.`);
+    console.log(`Seed completado: ${result.created} vehiculo(s) nuevos, ${result.skipped} ya existian.`);
     console.log(
-      `Totales en Firebase: ${totals.users} usuario(s), ${totals.vehicles} Vehículo(s), ` +
+      `Totales en Firebase: ${totals.users} usuario(s), ${totals.vehicles} vehiculo(s), ` +
         `${totals.images} imagen(es), ${totals.bids} oferta(s).`,
     );
     console.log('\nCuentas de demostracion (contrasena: Demo1234):');

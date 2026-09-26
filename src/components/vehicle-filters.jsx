@@ -39,9 +39,9 @@ export default function VehicleFilters({ facets = {}, value = {}, onChange, onCl
       </p>
 
       <div className="filter-group">
-        <label htmlFor="filter-year">año</label>
+        <label htmlFor="filter-year">Anio</label>
         <select id="filter-year" className="filter-select" value={value.year || ''} onChange={select('year')}>
-          <option value="">Todos los años</option>
+          <option value="">Todos los anios</option>
           {years.map((year) => (
             <option key={year} value={year}>
               {year}
@@ -87,7 +87,7 @@ export default function VehicleFilters({ facets = {}, value = {}, onChange, onCl
       </div>
 
       <div className="filter-group">
-        <label htmlFor="filter-damage">Nivel de daño</label>
+        <label htmlFor="filter-damage">Nivel de dano</label>
         <select
           id="filter-damage"
           className="filter-select"
@@ -105,7 +105,7 @@ export default function VehicleFilters({ facets = {}, value = {}, onChange, onCl
 
       {resultCount !== null ? (
         <p className="form-hint" style={{ marginTop: 12, marginBottom: 0 }}>
-          {resultCount === 1 ? '1 Vehículo encontrado' : `${resultCount} vehículos encontrados`}
+          {resultCount === 1 ? '1 vehiculo encontrado' : `${resultCount} vehiculos encontrados`}
         </p>
       ) : null}
     </aside>
